@@ -1,0 +1,270 @@
+/* Custom styles that complement Tailwind CSS */
+
+/* Simple Header Styles */
+.simple-header {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.simple-header:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Navigation Link Animations */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #7c2d12; /* Dark amber to match button */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Napoleonic Font Styles */
+.napoleonic-title {
+    font-family: 'Cinzel Decorative', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+}
+
+.napoleonic-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Section Animation */
+.section-animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Divider Styles */
+.divider-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Consistent Button Styles */
+.consistent-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 2px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 220, 100, 0.4);
+    background: linear-gradient(145deg, rgba(255, 240, 180, 0.2), rgba(255, 220, 100, 0.1));
+    color: #7c2d12; /* Dark amber text */
+}
+
+.consistent-button:hover {
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 2px 2px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, rgba(255, 245, 200, 0.3), rgba(255, 230, 120, 0.15));
+    transform: translateY(-3px);
+}
+
+.consistent-button:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.1),
+        inset 0 2px 2px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.consistent-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.consistent-button:hover::before {
+    left: 100%;
+}
+
+/* Form Elements */
+#disease-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+/* Image Preview */
+#image-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 0.75rem;
+}
+
+/* Nutrition Display */
+.nutrition-display {
+    animation: slideInUp 0.8s ease-out;
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Enhanced Circle Animations */
+.circle-loading {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+.circle-active {
+    animation: fill 0.3s ease-out forwards;
+}
+
+@keyframes fill {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.circle-completed {
+    animation: completed 0.5s ease-out forwards;
+}
+
+@keyframes completed {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Add padding to body to account for fixed header */
+body {
+    padding-top: 5rem;
+}
+
+/* Remove excessive margin that might cause big gaps */
+.section-animate {
+    margin-bottom: 2rem;
+}
+
+/* Notification Styles */
+.notification {
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-success {
+    background: linear-gradient(145deg, rgba(187, 247, 208, 0.8), rgba(154, 234, 184, 0.8));
+    border: 1px solid rgba(187, 247, 208, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.notification-error {
+    background: linear-gradient(145deg, rgba(254, 202, 202, 0.8), rgba(254, 178, 178, 0.8));
+    border: 1px solid rgba(254, 202, 202, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.notification-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.notification-icon {
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.notification-message {
+    flex: 1;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-left: 0.75rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.notification-close:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+

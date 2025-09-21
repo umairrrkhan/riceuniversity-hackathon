@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - All Possibilities</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-4">API Test Page</h1>
+        <p class="mb-4">This page is for testing the Google Gemini API integration.</p>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2" for="api-key">Google API Key:</label>
+            <input type="text" id="api-key" class="w-full p-2 border rounded" placeholder="Enter your Google API key">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2" for="health-info">Health Information:</label>
+            <textarea id="health-info" class="w-full p-2 border rounded" placeholder="Enter health conditions..."></textarea>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2" for="image-url">Image URL:</label>
+            <input type="text" id="image-url" class="w-full p-2 border rounded" placeholder="Enter image URL">
+        </div>
+        
+        <button id="test-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Test API
+        </button>
+        
+        <div id="result" class="mt-6 p-4 bg-gray-50 rounded hidden">
+            <h2 class="text-xl font-bold mb-2">API Response:</h2>
+            <pre id="response" class="whitespace-pre-wrap"></pre>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('test-btn').addEventListener('click', async function() {
+            const apiKey = document.getElementById('api-key').value;
+            const healthInfo = document.getElementById('health-info').value;
+            const imageUrl = document.getElementById('image-url').value;
+            
+            if (!apiKey) {
+                alert('Please enter an API key');
+                return;
+            }
+            
+            if (!imageUrl) {
+                alert('Please enter an image URL');
+                return;
+            }
+            
+            try {
+                // Fetch the image as base64
+                const imageResponse = await fetch(imageUrl);
+                const blob = await imageResponse.blob();
+                const reader = new FileReader();
+                
+                reader.onload = async function() {
+                    const imageData = reader.result;
+                    
+                    // Prepare request to Google Gemini API
+                    const requestBody = {
+                        contents: [{
+                            parts: [
+                                {
+                                    text: `Analyze this food image and provide detailed nutritional information including calories, protein, carbs, fat, fiber, sugar, and sodium. 
+                                    Also, check for any potential health concerns for someone with these conditions: ${healthInfo || 'no specific health conditions'}.
+                                    Format your response as a JSON object with the following keys:
+                                    - foodItem: Name of the food item
+                                    - summary: A brief summary of the analysis
+                                    - calories: Calories content (e.g., "250 kcal")
+                                    - protein: Protein content (e.g., "15g")
+                                    - carbs: Carbohydrate content (e.g., "30g")
+                                    - fat: Fat content (e.g., "10g")
+                                    - fiber: Fiber content (e.g., "5g")
+                                    - sugar: Sugar content (e.g., "8g")
+                                    - sodium: Sodium content (e.g., "450mg")
+                                    - healthCompatibility: Personalized health recommendation based on the provided conditions
+                                    - confidence: Confidence level of your analysis (0-1)
+                                    - keyNutrients: Array of key nutrients in the food
+                                    - healthBenefits: Array of potential health benefits
+                                    - healthRisks: Array of potential health risks`
+                                },
+                                {
+                                    inline_data: {
+                                        mime_type: "image/jpeg",
+                                        data: imageData.split(',')[1] // Remove data:image/jpeg;base64, part
+                                    }
+                                }
+                            ]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 1024,
+                            response_mime_type: "application/json"
+                        }
+                    };
+                    
+                    // Send request to Google Gemini API
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+                    
+                    const data = await response.json();
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+                    document.getElementById('result').classList.remove('hidden');
+                };
+                
+                reader.readAsDataURL(blob);
+            } catch (error) {
+                document.getElementById('response').textContent = `Error: ${error.message}`;
+                document.getElementById('result').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

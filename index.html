@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All Possibilities - Your trusted source for health and nutrition information. Share your health conditions and get personalized food nutrition analysis.">
+    <title>All Possibilities - Health & Nutrition</title>
+    
+    <!-- Tailwind CSS and DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Napoleonic/Elegant Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-yellow-300 text-black">
+    <!-- Simple Transparent Header -->
+    <header class="simple-header bg-white/90 backdrop-blur-md border-b border-white/30 fixed w-full top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center px-6 py-3">
+            <h1 class="text-2xl font-bold">All Possibilities</h1>
+            
+            <!-- Navigation -->
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="nav-link text-gray-700 hover:text-black transition-all duration-300 transform hover:-translate-y-0.5">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Hero Section -->
+            <section class="text-center py-16 px-4">
+                <div class="max-w-2xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-black" style="font-family: 'Arial Black', 'Helvetica', sans-serif; -webkit-text-stroke: 2px black; text-shadow: 3px 3px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 1px 1px 0px #fff;">
+                        Health & Nutrition
+                    </h1>
+                    <p class="text-lg md:text-xl mb-10 text-black font-semibold" style="text-shadow: 1px 1px 0px #fff;">
+                        Discover if foods are safe for you with our advanced AI analysis
+                    </p>
+                    <div class="button-container">
+                        <button id="begin-button" class="consistent-button px-8 py-4 text-lg font-semibold">
+                            Begin Analysis
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Combined Health Information and Nutrition Analysis Section -->
+            <section id="analysis" class="section-animate bg-white rounded-2xl shadow-lg p-6 mb-8 border border-gray-200">
+                <div class="flex items-start mb-4">
+                    <div class="bg-yellow-100/30 p-3 rounded-lg mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Your Health Information & Food Analysis</h2>
+                        <p class="text-gray-600">Share your health conditions and upload a food image for personalized safety recommendations</p>
+                    </div>
+                </div>
+                
+                <form id="health-form" class="space-y-4">
+                    <div class="form-control">
+                        <label for="disease" class="label">
+                            <span class="label-text font-medium text-gray-700">Do you have any existing health conditions?</span>
+                        </label>
+                        <textarea id="disease" name="disease" placeholder="e.g., Diabetes, Hypertension, Heart disease, etc." class="textarea textarea-bordered h-24 bg-white/50 border-gray-200 focus:border-yellow-400 focus:ring-yellow-400/20 transition-all duration-300"></textarea>
+                        <div class="text-sm text-gray-500 mt-1">Examples: diabetes, high blood pressure, heart conditions, etc.</div>
+                    </div>
+                    
+                    <div class="form-control">
+                        <label for="allergies" class="label">
+                            <span class="label-text font-medium text-gray-700">Do you have any food allergies?</span>
+                        </label>
+                        <textarea id="allergies" name="allergies" placeholder="e.g., Peanut allergy, Lactose intolerance, Shellfish allergy, etc." class="textarea textarea-bordered h-24 bg-white/50 border-gray-200 focus:border-yellow-400 focus:ring-yellow-400/20 transition-all duration-300"></textarea>
+                        <div class="text-sm text-gray-500 mt-1">Examples: peanut allergy, lactose intolerance, gluten sensitivity, etc.</div>
+                    </div>
+                </form>
+                
+                <div class="divider-container my-6 flex items-center">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="mx-4 text-gray-400">•</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+                
+                <div class="upload-container">
+                    <div class="form-control">
+                        <label for="food-image" class="label">
+                            <span class="label-text font-medium text-gray-700">Upload a food image</span>
+                        </label>
+                        <input type="file" id="food-image" accept="image/*" class="file-input file-input-bordered w-full max-w-xs mx-auto bg-white/50 border-gray-200 focus:border-yellow-400 focus:ring-yellow-400/20 transition-all duration-300" />
+                    </div>
+                    
+                    <div id="image-preview" class="mt-6 min-h-64 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50/50">
+                        <p class="text-gray-500">Image preview will appear here</p>
+                    </div>
+                </div>
+                
+                <!-- Analysis Button -->
+                <div class="analysis-button-container mt-6 flex justify-center">
+                    <button id="analyze-button" class="consistent-button relative px-6 py-3 bg-yellow-100/20 backdrop-blur-lg border border-yellow-200/30 rounded-lg text-base font-semibold text-yellow-800 hover:bg-yellow-100/30 transition-all duration-300 transform hover:-translate-y-1 shadow-md w-full max-w-xs" disabled>
+                        Analyze Food
+                        <span id="analyze-spinner" class="hidden ml-2">
+                            <svg class="animate-spin h-5 w-5 text-yellow-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                
+                <!-- Agent Loading Indicators -->
+                <div id="agent-loading" class="agent-loading-container mt-8 hidden">
+                    <h3 class="text-xl font-bold mb-6 text-center text-gray-800">AI Analysis in Progress</h3>
+                    
+                    <!-- Agent Boxes -->
+                    <div class="flex justify-center space-x-12 mb-8">
+                        <!-- Agent 1 Box -->
+                        <div class="agent-box bg-gradient-to-br from-white/80 to-gray-100/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-200/50 shadow-xl w-52 transition-all duration-300 hover:shadow-2xl">
+                            <div class="text-center mb-4">
+                                <div class="agent-icon bg-gradient-to-br from-blue-100 to-blue-200 w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 border-2 border-blue-300 shadow-sm">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-md shadow-md"></div>
+                                </div>
+                                <h4 class="font-bold text-gray-800 text-lg">Agent 1</h4>
+                                <p class="text-sm text-gray-600 mt-1">Nutrition Analysis</p>
+                            </div>
+                            
+                            <!-- Enhanced 3x3 Circles Grid Loading Indicator -->
+                            <div class="circles-grid grid grid-cols-3 gap-3 mt-4 justify-center">
+                                <div id="agent1-circle1" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle2" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle3" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle4" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle5" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle6" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle7" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle8" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent1-circle9" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Agent 2 Box -->
+                        <div class="agent-box bg-gradient-to-br from-white/80 to-gray-100/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-200/50 shadow-xl w-52 transition-all duration-300 hover:shadow-2xl">
+                            <div class="text-center mb-4">
+                                <div class="agent-icon bg-gradient-to-br from-green-100 to-green-200 w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 border-2 border-green-300 shadow-sm">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-md shadow-md"></div>
+                                </div>
+                                <h4 class="font-bold text-gray-800 text-lg">Agent 2</h4>
+                                <p class="text-sm text-gray-600 mt-1">Safety Check</p>
+                            </div>
+                            
+                            <!-- Enhanced 3x3 Circles Grid Loading Indicator -->
+                            <div class="circles-grid grid grid-cols-3 gap-3 mt-4 justify-center">
+                                <div id="agent2-circle1" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle2" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle3" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle4" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle5" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle6" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle7" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle8" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                                <div id="agent2-circle9" class="w-4 h-4 bg-gray-300 rounded-full transition-all duration-300 ease-out transform scale-90"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center text-gray-600 font-medium">Our AI agents are analyzing your food...</p>
+                </div>
+                
+                <!-- Modern Notification Container -->
+                <div id="notification-container" class="mt-4"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Dark Footer -->
+    <footer class="footer footer-center p-8 bg-gray-800 text-white border-t border-gray-700">
+        <div>
+            <p>© 2025 All Possibilities. Prioritizing your health and safety.</p>
+            <p class="mt-2">Competing for Rice University Hackathon Hack Rice 15</p>
+            <p class="mt-2">Follow me on Twitter: <a href="https://twitter.com/im_umair_khann" target="_blank" class="text-yellow-400 hover:text-yellow-300">@im_umair_khann</a></p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
