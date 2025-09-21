@@ -53,3 +53,6 @@ To set up and run this project locally, follow these steps:
 *   **Recipe Suggestions:** Provide personalized recipe recommendations based on health profiles and safe ingredients.
 *   **Multi-language Support:** Expand accessibility by supporting multiple languages.
 *   **Mobile Application:** Develop native mobile applications for iOS and Android.
+
+##  Deployment
+You can access the live application here: [riceuniversity-hackathon.vercel.app](https://riceuniversity-hackathon.vercel.app)
